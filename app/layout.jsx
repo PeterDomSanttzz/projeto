@@ -10,16 +10,17 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <div className="flex">
-          <nav className="w-64 h-screen bg-gray-800 text-white p-4 fixed">
+          <nav className="w-32 h-screen bg-gray-800 text-white p-4 fixed">
             <h2 className="text-2xl mb-6">Menu</h2>
             <ul className="flex flex-col gap-4">
               <li><Link href="/">Página 1</Link></li>
               <li><Link href="/contato">Página 2</Link></li>
-              <li><Link href="/ex1">Página 3</Link></li>
+              <li><Link href="/ex1-2-3">Página 3</Link></li>
+              <li><Link href="/ex4">Página 4</Link></li>
             </ul>
           </nav>
 
-        <main className="ml-64 flex-1 p-8">
+        <main className="ml-32 flex-1 p-8">
           {children}
         </main>
       </div>

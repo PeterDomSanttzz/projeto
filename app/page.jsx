@@ -15,10 +15,10 @@ export default function PrimeiroTeste() {
     const [horario, setHorario] = useState("")
     const [prof, setProf] = useState("")
 
-    if ({selected} == true) 
+    if (selected == true) 
     {
-        console.log("Seu nome completo:" + {nome} + {sobrenome})
-        console.log("Seu CPF:" + {cpf})
+        console.log("Seu nome completo: " + nome + sobrenome)
+        console.log("Seu CPF: " + cpf)
     }
 
     const exec = () => {
