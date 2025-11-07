@@ -3,55 +3,50 @@
 import { useEffect, useState } from "react"
 
 export default function Func() {
-    const [items, setItems] = useState([]);
-    const [nome, setNome] = useState("");
-    const [disable, setDisable] = useState(false);
+    const [contadorIniciado, setContadorIniciado] = useState(false);
+    const [dataAlvo, setDataAlvo] = useState("");
+    const [tempoRestante, setTempoRestante] = useState(0);
 
-    const add = () => {
-        const n = nome.trim()
-        if (!n) return
-        setItems(prev => [...prev, { id: crypto.randomUUID(), nome: n }]);
-        setNome("");
-        setDisable(true);
+    const start = () => {
+        setContadorIniciado(true);
+        const alvo = Date.now() + 10_000;
+        setDataAlvo(alvo);
+        setTempoRestante(10_000);
     }
 
-    const remove = (id) => {
-        setItems(prev => prev.filter(it => it.id !== id))
-    }
-    
-    useEffect ( () => {
-        console.log("opaaaa")
-    }, [])
+    useEffect(() => {
+        if (!contadorIniciado) { return; }
+
+        const id = setInterval(() => {
+            const agora = Date.now();
+            let restante = dataAlvo - agora;
+
+            if (restante <= 0) {
+                restante = 0;
+                clearInterval(id);
+                alert("ACABOU!")
+            }
+
+            setTempoRestante(restante);
+        }, 1000);
+        
+        return () => clearInterval(id);
+
+    }, [setContadorIniciado, dataAlvo]);
 
     return (
         <div className="w-full h-dvh flex flex-col items-center">
             <div className="w-8/10 mt-70 flex flex-col gap-4 items-center justify-center">
-                <p className="text-3xl font-light">Teste de digitação</p>
+                <p className="text-3xl font-light">Contador</p>
 
-                <label htmlFor="">Nome do item:</label>
-                <input className="p-2 text-center border-solid border-[#c9c9c9] border rounded-md" type="text" id="txtNome" disabled={disable} value={nome} onChange={(e) => setNome(e.target.value)}/>
+                <p className="text-3xl font-light">{Math.floor(tempoRestante / 1000)}</p>
 
-                <button className="w-full text-black p-2 bg-yellow-300 hover:text-black hover:bg-yellow-400 hover:border-yellow-500 border-solid border-yellow-400 border-b-2 border-r-2 rounded-md" onClick={add}>Start</button>
+                <button className="w-full text-black p-2 bg-yellow-300 hover:text-black hover:bg-yellow-400 hover:border-yellow-500 border-solid border-yellow-400 border-b-2 border-r-2 rounded-md" onClick={start}>Start</button>
 
                 <div className="w-full mb-10 p-6 flex flex-col border-solid border-[#c9c9c9] border rounded-md">
 
-                    {items.map((el, i) => (
-                        <List key={i} index={i + 1} nome={el.nome} onRemove={() => remove(el.id)}/>
-                    ))}
-
                 </div>
             </div>
-        </div>
-    )
-}
-
-function List({nome, index, onRemove}) {
-    return (
-        <div className="w-full p-5 flex items-center justify-between">
-            <p>{index} - {nome}</p>
-            
-            <button className="p-2 bg-red-500 hover:text-red-300 hover:bg-red-700 hover:border-red-500 hover:border-white border-solid border-red-300 border-b-2 border-r-2 rounded-md" onClick={onRemove}><img src="/icons/trash.png" alt="Excluir" /></button>
-
         </div>
     )
 }
