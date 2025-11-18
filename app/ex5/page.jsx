@@ -42,10 +42,6 @@ export default function Func() {
                 <p className="text-3xl font-light">{Math.floor(tempoRestante / 1000)}</p>
 
                 <button className="w-full text-black p-2 bg-yellow-300 hover:text-black hover:bg-yellow-400 hover:border-yellow-500 border-solid border-yellow-400 border-b-2 border-r-2 rounded-md" onClick={start}>Start</button>
-
-                <div className="w-full mb-10 p-6 flex flex-col border-solid border-[#c9c9c9] border rounded-md">
-
-                </div>
             </div>
         </div>
     )
