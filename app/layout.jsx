@@ -19,6 +19,7 @@ export default function RootLayout({ children }) {
               <li><Link href="/ex4">Página 4</Link></li>
               <li><Link href="/ex5">Página 5</Link></li>
               <li><Link href="/ex6">Página 6</Link></li>
+              <li><Link href="/ex7">Página 7</Link></li>
             </ul>
           </nav>
 
