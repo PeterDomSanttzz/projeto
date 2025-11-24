@@ -35,12 +35,9 @@ export default function Func() {
                 setText("Campos limpos por segurança");
                 clearInterval(id);
 
-                const id2 = setInterval(() => {
-                setText("");
-                clearInterval(id2);
+                setTimeout(() => {
+                    setText("");
                 }, 3000);
-
-                return () => clearInterval(id2);
 
             }, 10000);
 
