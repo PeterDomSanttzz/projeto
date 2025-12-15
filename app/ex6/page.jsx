@@ -29,25 +29,22 @@ export default function Func() {
 
     useEffect(() => {
         if (Email.length > 0 || Pass.length > 0) {
-            const id = setInterval(() => {
+            setTimeout(() => {
                 setEmail("");
                 setPass("");
                 setText("Campos limpos por segurança");
-                clearInterval(id);
 
                 setTimeout(() => {
                     setText("");
                 }, 3000);
 
             }, 10000);
-
-            return () => clearInterval(id);
         }
     }, [Email, Pass]);
 
     return (
-        <div className="w-full h-dvh flex flex-col items-center">
-            <div className="w-8/10 mt-70 flex flex-col gap-4 items-center justify-center">
+        <div className="w-full h-dvh flex flex-col items-center justify-center">
+            <div className="w-8/10 mt-70 mb-70 flex flex-col gap-4 items-center justify-center">
                 <p className="text-3xl font-light">Digite seu Email e Senha:</p>
 
                 <p className="text-2xl font-light">Email:</p>
